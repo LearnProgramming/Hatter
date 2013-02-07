@@ -1,0 +1,10 @@
+#
+# This file contains the default configuration for Hatter.
+
+# Each setting is of the form: <key> = <value>
+
+# Path to the root of the local maildir
+maildir = /path/to/maildir
+
+# The format of the maildir, e.g maildir or mbox
+maildir_format = maildir
