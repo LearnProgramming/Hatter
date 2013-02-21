@@ -1,9 +1,9 @@
 require 'views/view'
+require 'termbox'
 
-class Mail_view < View
-  require 'termbox'
+class MailView < View
 
-  def initialize location
+  def initialize(location)
     super
     @mail = @mailbox.most_recent
   end
@@ -23,7 +23,7 @@ class Mail_view < View
   end
 
   def draw_mail
-    from = @mail.sender
+    from, = @mail.from
     subject = @mail.subject
     text = @mail.body.decoded
     x = @start_x + @Border_width + 1

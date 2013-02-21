@@ -1,13 +1,14 @@
+require 'termbox'
+require 'views/mail_view'
+require 'views/label_view'
+require 'views/folder_view'
+
 module Termbox
   TB_INPUT_ESCAPE = 1
   TB_INPUT_ALT = 2
 end
 
 class Terminal
-  require 'termbox'
-  require 'views/mail_view'
-  require 'views/label_view'
-  require 'views/folder_view'
 
   def initialize
     initialize_termbox
@@ -30,9 +31,9 @@ class Terminal
     folder_view_location = {x0: 0, y0: 0, x1: 19, y1: 40}
     label_view_location = {x0: 0, y0: 41, x1: 19, y1: 79}
     mail_view_location = {x0: 20, y0: 0, x1: 79, y1: 79}
-    @views = [Mail_view.new(mail_view_location),
-              Label_view.new(label_view_location),
-              Folder_view.new(folder_view_location)]
+    @views = [MailView.new(mail_view_location),
+              LabelView.new(label_view_location),
+              FolderView.new(folder_view_location)]
   end
 
   def initialize_termbox

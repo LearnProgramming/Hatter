@@ -1,10 +1,11 @@
+require 'configuration'
+require 'termbox'
+
 class View
-  require 'configuration'
-  require 'termbox'
 
   attr_reader :colors, :mailbox
 
-  def initialize location
+  def initialize(location)
     @Border_width = 1
     @start_x = location[:x0]
     @start_y = location[:y0]
@@ -14,7 +15,7 @@ class View
     set_colors
   end
 
-  def draw_text text, x, y
+  def draw_text(text, x, y)
     words = text.split(/\s+/)
     words.each do |word|
       if x + word.length + 1 >= @end_x
@@ -34,13 +35,13 @@ class View
     return y
   end
 
-  def draw_horizontal_line at
+  def draw_horizontal_line(at)
     @start_x.upto(@end_x) do |x|
       Termbox.tb_change_cell(x, at, " ".ord, @colors[:bg], @colors[:fg])
     end
   end
 
-  def draw_vertical_line at
+  def draw_vertical_line(at)
     @start_y.upto(@end_y) do |y|
       Termbox.tb_change_cell(at, y, " ".ord, @colors[:bg], @colors[:fg])
     end
@@ -49,13 +50,13 @@ class View
   private
 
   # Reads the maildir format from config file.  Requires the class and sets
-  # @mailbox to mailbox/<maildir-format>_mailbox
+  # @mailbox to mailbox/<maildir-format>Mailbox
   def set_mailbox
     config = Configuration.instance
     maildir_format = config.maildir_format
-    mailbox_class = maildir_format.capitalize + "_mailbox"
+    mailbox_class = maildir_format.capitalize + "Mailbox"
     class_dir = File.expand_path('../../', __FILE__) + "/mailbox"
-    mailbox_file = File.join class_dir, mailbox_class.downcase
+    mailbox_file = File.join class_dir, maildir_format + "_mailbox"
     require mailbox_file
     maildir_path = config.maildir
     @mailbox = self.class.const_get(mailbox_class).new maildir_path

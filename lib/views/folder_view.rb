@@ -1,8 +1,4 @@
-class Folder_view < View
-
-  def initialize location
-    super
-  end
+class FolderView < View
 
   def draw
     draw_folders

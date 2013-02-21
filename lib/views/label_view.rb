@@ -1,8 +1,4 @@
-class Label_view < View
-
-  def initialize location
-    super
-  end
+class LabelView < View
 
   def draw
     draw_labels

@@ -8,7 +8,7 @@ class Configuration < ConfigToolkit::BaseConfig
 
   CONFIG_FILE = File.expand_path_relative_to_caller("../hatterrc")
 
-  def initialize config_file = CONFIG_FILE
+  def initialize(config_file = CONFIG_FILE)
     reader = ConfigToolkit::KeyValueReader.new config_file
     load reader
   end
