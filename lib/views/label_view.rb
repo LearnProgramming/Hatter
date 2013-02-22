@@ -1,0 +1,17 @@
+class LabelView < View
+
+  def draw
+    draw_labels
+  end
+
+  private
+
+  def draw_labels
+    x = @start_x
+    y = @start_y
+    y = draw_text("Labels:", x, y)
+    @mailbox.labels.each do |label|
+      y = draw_text label, x, y + 1
+    end
+  end
+end

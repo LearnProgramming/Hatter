@@ -5,7 +5,7 @@ group :development, :test do
   gem 'pry'
   gem 'rake'
   gem 'mail'
-  gem 'rbcurse'
+  gem 'rb_termbox'
   gem 'configtoolkit'
 end
 

@@ -8,3 +8,9 @@ maildir = /path/to/maildir
 
 # The format of the maildir, e.g maildir or mbox
 maildir_format = maildir
+
+# Hatter relies on Termbox for the terminal UI
+termbox_library_path = /usr/lib/libtermbox.so
+
+# All the colors i Hatter can be customized:
+colors = {foreground => green, background => black}
