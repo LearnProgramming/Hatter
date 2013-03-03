@@ -1,5 +1,8 @@
 require 'rspec'
 
-require './lib/hatter.rb'
-require './lib/configuration.rb'
-require './lib/views/view.rb'
+require './lib/hatter'
+require './lib/configuration'
+require './lib/views/view'
+require './lib/command_factory'
+require './lib/commands/command'
+require './lib/commands/quit'

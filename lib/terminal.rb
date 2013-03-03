@@ -23,7 +23,14 @@ class Terminal
 
   def shutdown
     Termbox.tb_shutdown
+    exit
   end
+
+  def get_user_input
+    Termbox.tb_poll_event(@event)
+    ascii_to_symbol @event[:ch]
+  end
+
 
   private
 
@@ -34,6 +41,10 @@ class Terminal
     @views = [MailView.new(mail_view_location),
               LabelView.new(label_view_location),
               FolderView.new(folder_view_location)]
+  end
+
+  def ascii_to_symbol(i)
+    i.chr.intern
   end
 
   def initialize_termbox
