@@ -15,22 +15,25 @@ class Terminal
     initialize_views
   end
 
+  # Updates the terminal view by redrawing all currently active views.
   def draw
     Termbox.tb_clear
     @views.each {|view| view.draw}
     Termbox.tb_present
   end
 
+  # Shuts off the terminal in a safe manner and then exits the ruby process.
   def shutdown
     Termbox.tb_shutdown
     exit
   end
 
+  # Blocks until the user presses a key
+  # @return [Symbol] the key pressed as a symbol
   def get_user_input
     Termbox.tb_poll_event(@event)
     ascii_to_symbol @event[:ch]
   end
-
 
   private
 
