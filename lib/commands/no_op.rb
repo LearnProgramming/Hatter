@@ -1,5 +1,9 @@
-require 'commands/command'
+class NoOpCommand
 
-class NoOpCommand < Command
+  def execute
+  end
+
+  def unexecute
+  end
 
 end

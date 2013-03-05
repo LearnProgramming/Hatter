@@ -47,7 +47,7 @@ class Terminal
   end
 
   def ascii_to_symbol(i)
-    i.chr.intern
+    i.chr.to_sym
   end
 
   def initialize_termbox

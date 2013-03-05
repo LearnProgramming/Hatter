@@ -1,7 +1,6 @@
-require 'commands/command'
 require 'terminal'
 
-class QuitCommand < Command
+class QuitCommand
 
   def initialize terminal
     @terminal = terminal
@@ -11,4 +10,6 @@ class QuitCommand < Command
     @terminal.shutdown
   end
 
+  def unexecute
+  end
 end

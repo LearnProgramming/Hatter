@@ -7,7 +7,6 @@ class CommandFactory
   end
 
   # Instantiates the command object corresponding to `key`.
-
   # @param key [Symbol] the key the user pressed on the keyboard.
   # @return [Command] the command the user wishes to execute.
   def command(key)
