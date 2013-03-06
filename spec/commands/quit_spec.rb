@@ -9,7 +9,7 @@ describe QuitCommand do
   subject{ command }
   it_behaves_like "a command"
 
-  context "After executing" do
+  describe "after #execute" do
     context "the terminal" do
       before { command.execute }
       subject { terminal }
