@@ -14,8 +14,8 @@ class Configuration < ConfigToolkit::BaseConfig
   end
 
   class Colors < ConfigToolkit::BaseConfig
-  add_required_param(:foreground, String)
-  add_required_param(:background, String)
+    add_required_param(:foreground, String)
+    add_required_param(:background, String)
   end
 
   add_required_param(:maildir, String)

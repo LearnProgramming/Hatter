@@ -2,7 +2,9 @@ source 'http://rubygems.org'
 
 group :development, :test do
   gem 'rspec'
+  gem 'rspec-spies'
   gem 'pry'
+  gem 'pry-doc'
   gem 'rake'
   gem 'mail'
   gem 'rb_termbox'
