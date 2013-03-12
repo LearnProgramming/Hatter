@@ -10,8 +10,11 @@ class CommandFactory
   # @param key [Symbol] the key the user pressed on the keyboard.
   # @return [Command] the command the user wishes to execute.
   def command(key)
-    case key
-    when :q
+    keys = configuration.instance.keys
+    cmd = eval "#{keys}.#{key}"
+    cmd.capitalize! << "Command"
+    case cmd
+    when /QuitCommand/
       QuitCommand.new(@terminal)
     else
       NoOpCommand.new

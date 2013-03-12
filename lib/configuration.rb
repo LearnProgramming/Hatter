@@ -18,6 +18,12 @@ class Configuration < ConfigToolkit::BaseConfig
     add_required_param(:background, String)
   end
 
+  class Keys < ConfigToolkit::BaseConfig
+    add_required_param(:q, String)
+    add_required_param(:r, String)
+    add_required_param(:f, String)
+  end
+
   add_required_param(:maildir, String)
   add_required_param(:maildir_format, String)
   add_required_param(:termbox_library_path, String)
