@@ -13,4 +13,7 @@ maildir_format = maildir
 termbox_library_path = /usr/lib/libtermbox.so
 
 # All the colors i Hatter can be customized:
-colors = {foreground => green, background => black}
+colors = { foreground => green, background => black }
+
+# The keybindings for Hatter can be changed here:
+keys = { q => quit, r => reply, f => forward }
