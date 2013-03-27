@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CommandFactory do
 
   subject(:factory) { CommandFactory.new nil }
-  let(:command) { factory.command(:foo) }
+  let(:command) { factory.command :f  }
 
   context "creates commands which:" do
     subject { command }

@@ -10,9 +10,12 @@ class CommandFactory
   # @param key [Symbol] the key the user pressed on the keyboard.
   # @return [Command] the command the user wishes to execute.
   def command(key)
-    keys = configuration.instance.keys
-    cmd = eval "#{keys}.#{key}"
+    keys = "Configuration.instance.keys"
+    cmd = eval "#{keys}.#{key.to_s}"
     cmd.capitalize! << "Command"
+    File.open("log", 'w') do |file|
+      file.write("cmd #{cmd}\n")
+    end
     case cmd
     when /QuitCommand/
       QuitCommand.new(@terminal)
