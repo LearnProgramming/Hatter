@@ -35,7 +35,7 @@ describe 'Configuration' do
   it "contains a nested config with colors" do
     config = Configuration.instance
     config.colors.foreground.should eq "green"
-    config.colors.foreground.should eq "green"
+    config.colors.background.should eq "black"
   end
 
   it "contains a nested config with keys" do
