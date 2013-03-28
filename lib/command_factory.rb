@@ -24,6 +24,8 @@ class CommandFactory
     case name
     when /QuitCommand/
       QuitCommand.new(@terminal)
+    when /ComposeCommand/
+      ComposeCommand.new
     else
       NoOpCommand.new
     end
