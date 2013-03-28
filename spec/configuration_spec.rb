@@ -38,4 +38,9 @@ describe 'Configuration' do
     config.colors.foreground.should eq "green"
   end
 
+  it "contains a nested config with keys" do
+    config = Configuration.instance
+    config.keys.c.should eq "compose"
+    config.keys.q.should eq "quit"
+  end
 end

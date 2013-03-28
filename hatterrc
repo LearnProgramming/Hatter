@@ -16,4 +16,10 @@ termbox_library_path = /usr/lib/libtermbox.so
 colors = { foreground => green, background => black }
 
 # The keybindings for Hatter can be changed here:
-keys = { q => quit, r => reply, f => forward }
+keys = { q => quit, r => reply, f => forward, c => compose }
+
+# The email address used for sending mail
+email_address = your_email@adress.com
+
+# The method used to send mail.
+mail_delivery_method = sendmail
