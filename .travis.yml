@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - "2.0.0"
+  - ruby-head
+  - jruby-head
+  - rbx-19mode
+
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#lpmc"
+      use_notice: true
+      skip_join: true
