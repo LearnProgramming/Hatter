@@ -1,5 +1,6 @@
 require 'terminal'
 require 'command_factory'
+require 'pry'
 
 unless ENV["HEADLESS"]
   begin
@@ -8,7 +9,7 @@ unless ENV["HEADLESS"]
     while true do
       terminal.draw
       key = terminal.get_user_input
-      cmd = command_factory.cmd key
+      cmd = command_factory.command key
       cmd.execute
     end
   rescue
