@@ -6,11 +6,16 @@ class Configuration < ConfigToolkit::BaseConfig
 
   include Singleton
 
-  CONFIG_FILE = File.expand_path_relative_to_caller("../hatterrc")
+  CONFIG_FILE = File.expand_path_relative_to_caller('../hatterrc')
 
   def initialize(config_file = CONFIG_FILE)
-    reader = ConfigToolkit::KeyValueReader.new config_file
+    reader = ConfigToolkit::KeyValueReader.new(user_config || config_file)
     load reader
+  end
+
+  def user_config
+    path = File.join(Dir.home, '.hatterrc')
+    return path if File.exists?(path)
   end
 
   class Colors < ConfigToolkit::BaseConfig
