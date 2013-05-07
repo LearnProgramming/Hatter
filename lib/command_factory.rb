@@ -16,7 +16,7 @@ class CommandFactory
   private
 
   def require_commands
-    commands = File.join(File.dirname(__FILE__), "commands")  + "/*"
+    commands = File.join(File.dirname(__FILE__), "commands", "*")
     Dir[commands].each { |file| eval "require '#{file}'" }
   end
 
@@ -34,7 +34,7 @@ class CommandFactory
   def command_name(key)
     begin
       keys = "Configuration.instance.keys"
-      cmd = eval "#{keys}.#{key.to_s}"
+      cmd = eval "#{keys}.#{key}"
     rescue SyntaxError
       "NoOp"
     end

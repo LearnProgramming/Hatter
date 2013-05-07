@@ -2,45 +2,51 @@ require 'spec_helper'
 require 'relative'
 require 'configtoolkit/keyvaluereader'
 
-describe 'Configuration' do
+describe Configuration do
+  let(:maildir_path) { '/path/to/maildir' }
+  let(:maildir_format) { 'maildir' }
+  let(:termbox_library_path) { '/usr/lib/libtermbox.so' }
 
-  before :all do
-    CONFIG_FILE = File.expand_path_relative_to_caller("../hatterrc")
-    @maildir_path = "/path/to/maildir"
-    @maildir_format = "maildir"
-    @termbox_library_path = "/usr/lib/libtermbox.so"
+  subject(:config) { Configuration.instance }
+
+  context 'with a user config file should override defaults' do
+      let(:user_file_exists) { File.exists?(File.join(Dir.home, '.hatterrc')) }
+
+      its(:maildir)        { should_not eq maildir_path   if user_file_exists }
+      its(:maildir_format) { should_not eq maildir_format if user_file_exists }
   end
 
-  it "barfs when required values are missing" do
-    config = File.read CONFIG_FILE
-    config.gsub!(/maildir/, 'asdf')
-    File.open("invalid_config", "w") {|file| file.write config}
-    expect {Configuration.instance "invalid_config"}.to raise_error
-    FileUtils::rm("invalid_config")
+  context 'with an invalid config file' do
+    let(:config_file) { File.read(Configuration::CONFIG_FILE) }
+
+    it 'barfs when required values are missing' do
+      config_file.gsub!(/maildir/, 'asdf')
+      File.open('invalid_config', 'w') { |file| file.write config_file }
+      expect { Configuration.send(:new, 'invalid_config') }.to raise_error
+      FileUtils::rm('invalid_config')
+    end
   end
 
-  it "reads the configuration values from file" do
-    config = Configuration.instance
-    config.maildir.should eq @maildir_path
-    config.maildir_format.should eq @maildir_format
-  end
+  context 'with a valid config file' do
+    subject(:config) { Configuration.send(:new, Configuration::CONFIG_FILE) }
 
-  it "the settings have the correct values" do
-    config = Configuration.instance
-    config.maildir.should eq @maildir_path
-    config.maildir_format.should eq @maildir_format
-    config.termbox_library_path.should eq @termbox_library_path
-  end
+    its(:maildir)        { should eq maildir_path }
+    its(:maildir_format) { should eq maildir_format }
 
-  it "contains a nested config with colors" do
-    config = Configuration.instance
-    config.colors.foreground.should eq "green"
-    config.colors.background.should eq "black"
-  end
+    its(:termbox_library_path) { should eq termbox_library_path }
 
-  it "contains a nested config with keys" do
-    config = Configuration.instance
-    config.keys.c.should eq "compose"
-    config.keys.q.should eq "quit"
+    describe 'colors settings' do
+      subject { config.colors }
+      
+      its(:foreground) { should eq 'green' }
+      its(:background) { should eq 'black' }
+    end
+
+    describe 'nested config keys' do
+      subject { config.keys }
+
+      its(:c) { should eq 'compose' }
+      its(:q) { should eq 'quit' }
+    end
   end
 end
