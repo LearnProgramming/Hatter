@@ -7,4 +7,5 @@ Gem::Specification.new do |c|
   c.name          = "Hatter"
   c.version       = "0.0.1"
   c.require_paths = ["lib"]
+  c.executables   = "hatter"
 end
